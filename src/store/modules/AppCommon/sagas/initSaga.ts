@@ -1,17 +1,30 @@
+import {DatabaseService} from '@services/database';
 import {storage} from '@services/mmkv';
 import {AppCommonActions} from '@store/modules/AppCommon/actions';
-import {put} from 'redux-saga/effects';
+import {getErrorMessage} from '@store/utils/errors';
+import {Appearance} from 'react-native';
+import {call, put} from 'redux-saga/effects';
 
 export function* initSaga() {
-  const theme = storage.getString('theme');
-  if (!theme) {
-    return;
-  }
+  try {
+    let themeStored = storage.getString('theme');
+    if (themeStored !== 'dark' && themeStored !== 'light') {
+      storage.delete('theme');
+      themeStored = undefined;
+    }
 
-  if (theme !== 'dark' && theme !== 'light') {
-    storage.delete('theme');
-    return;
-  }
+    const theme = themeStored || Appearance.getColorScheme() || 'light';
 
-  yield put(AppCommonActions.CHANGE_THEME.START.create(theme));
+    yield put(AppCommonActions.CHANGE_THEME.START.create(theme));
+
+    yield call(DatabaseService.createTables);
+
+    yield put(AppCommonActions.INIT.SUCCESS.create());
+  } catch (error) {
+    yield put(
+      AppCommonActions.INIT.FAILED.create({
+        errorMessage: getErrorMessage(error),
+      }),
+    );
+  }
 }

@@ -6,9 +6,20 @@ const CHANGE_THEME = createAction('CHANGE_THEME', {
 
 const INIT = createAction('INIT', {
   START: () => {},
+  SUCCESS: () => {},
+});
+
+const SWITCH_THEME = createAction('SWITCH_THEME', {
+  START: () => {},
+});
+
+const SET_IS_ERROR = createAction('SET_IS_ERROR', {
+  START: (isError: boolean) => isError,
 });
 
 export const AppCommonActions = Object.freeze({
+  SWITCH_THEME,
   CHANGE_THEME,
   INIT,
+  SET_IS_ERROR,
 });

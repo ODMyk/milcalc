@@ -8,12 +8,12 @@ export const useStyles = () => {
   return StyleSheet.create({
     text: {
       fontFamily: Fonts.Default,
-      color: Colors.text.default,
+      color: Colors.text.primary,
     },
     header: {
       fontFamily: Fonts.Regular,
       fontWeight: '700',
-      color: Colors.text.default,
+      color: Colors.text.primary,
       fontSize: rem(24),
       lineHeight: rem(24),
     },
@@ -26,7 +26,7 @@ export const useStyles = () => {
       lineHeight: rem(14),
     },
     description: {
-      color: Colors.text.default,
+      color: Colors.text.primary,
       fontFamily: Fonts.Regular,
       fontSize: rem(14),
       lineHeight: rem(20),
@@ -34,7 +34,7 @@ export const useStyles = () => {
     label: {
       fontSize: rem(14),
       lineHeight: rem(14),
-      color: Colors.text.label,
+      color: Colors.text.disabled,
     },
     label_focused: {
       fontWeight: '700',

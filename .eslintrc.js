@@ -46,5 +46,5 @@ module.exports = {
       },
     },
   ],
-  ignorePatterns: ['src/api'],
+  ignorePatterns: ['src/api', 'calculations'],
 };

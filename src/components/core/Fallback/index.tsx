@@ -1,18 +1,30 @@
+import {
+  errorTextSelector,
+  isErrorSelector,
+} from '@store/modules/AppCommon/selectors';
+import {RootState} from '@store/rootReducer';
 import {getErrorMessage} from '@store/utils/errors';
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {connect} from 'react-redux';
 import {rem} from 'src/theme/rn-units';
 
-export type FallbackIE = {
-  children: React.ReactNode;
-};
+export interface FallbackProps extends React.PropsWithChildren {
+  errorText?: string;
+  hasError: boolean;
+}
 
 export type FallbackState = {
   hasError: boolean;
   text?: string;
 };
 
-export class Fallback extends React.Component<FallbackIE, FallbackState> {
+const mapStateToProps = (state: RootState) => ({
+  hasError: isErrorSelector(state),
+  errorText: errorTextSelector(state),
+});
+
+class FallbackClass extends React.Component<FallbackProps, FallbackState> {
   state: FallbackState = {hasError: false};
 
   render() {
@@ -28,11 +40,21 @@ export class Fallback extends React.Component<FallbackIE, FallbackState> {
         </View>
       );
     }
+
     return this.props.children;
   }
 
   componentDidCatch(error: Error): void {
     this.setState({hasError: true, text: getErrorMessage(error)});
+  }
+
+  componentDidUpdate(prevProps: FallbackProps) {
+    if (prevProps.hasError !== this.props.hasError) {
+      this.setState({
+        hasError: this.props.hasError,
+        text: this.props.errorText,
+      });
+    }
   }
 }
 
@@ -51,3 +73,5 @@ const styles = StyleSheet.create({
     fontSize: rem(12),
   },
 });
+
+export const Fallback = connect(mapStateToProps)(FallbackClass);

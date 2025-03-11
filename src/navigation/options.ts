@@ -1,3 +1,4 @@
+import {BottomTabNavigationOptions} from '@react-navigation/bottom-tabs';
 import {NativeStackNavigationOptions} from '@react-navigation/native-stack';
 import {isIOS} from '@services/platform';
 
@@ -19,4 +20,5 @@ export const fadeScreenWithGoBack = {
 export const tabOptions = {
   headerShown: false,
   lazy: true,
-};
+  tabBarPosition: 'left',
+} as BottomTabNavigationOptions;

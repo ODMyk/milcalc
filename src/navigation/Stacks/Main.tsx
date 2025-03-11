@@ -3,8 +3,11 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {MainScreen} from '@screens/MainFlow/MainScreen';
 import React from 'react';
 
+import {MenuNavigator} from './Menu';
+
 export type MainStackParamList = {
-  MainScreen: undefined;
+  Menu: undefined;
+  Scenario: undefined;
 };
 
 export type EditScreenList = {
@@ -25,14 +28,13 @@ const MainStack = createNativeStackNavigator<MainStackParamList>();
 
 export function MainNavigator() {
   return (
-    <MainStack.Navigator
-      screenOptions={screenOptions}
-      initialRouteName="MainScreen">
+    <MainStack.Navigator screenOptions={screenOptions} initialRouteName="Menu">
       <MainStack.Screen
         options={screenOptions}
-        name="MainScreen"
-        component={MainScreen}
+        name="Menu"
+        component={MenuNavigator}
       />
+      <MainStack.Screen name="Scenario" component={MainScreen} />
     </MainStack.Navigator>
   );
 }

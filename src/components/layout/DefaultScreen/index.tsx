@@ -1,9 +1,16 @@
 import React, {PropsWithChildren} from 'react';
+import {ViewStyle} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 import {useStyles} from './styles';
 
-export function DefaultScreen({children}: PropsWithChildren) {
+interface DefaultScreenProps extends PropsWithChildren {
+  style?: ViewStyle;
+}
+
+export function DefaultScreen({children, style}: DefaultScreenProps) {
   const styles = useStyles();
-  return <SafeAreaView style={styles.container}>{children}</SafeAreaView>;
+  return (
+    <SafeAreaView style={[styles.container, style]}>{children}</SafeAreaView>
+  );
 }
