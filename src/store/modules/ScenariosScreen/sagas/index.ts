@@ -1,9 +1,9 @@
-import {removeScenarioSaga} from './removeScenarioSaga';
 import {ScenariosScreenActions} from '@store/modules/ScenariosScreen/actions';
 import {all, takeLatest} from 'redux-saga/effects';
 
 import {createScenarioSaga} from './createScenarioSaga';
 import {fetchScenariosSaga} from './fetchScenariosSaga';
+import {removeScenarioSaga} from './removeScenarioSaga';
 
 export function* rootScenariosScreenSaga() {
   yield all([takeLatest(ScenariosScreenActions.REMOVE_SCENARIO.START.type, removeScenarioSaga),

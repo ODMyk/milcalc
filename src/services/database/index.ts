@@ -1,10 +1,10 @@
 import {AppState} from 'react-native';
 
 import {closeDb} from './connection';
-import {createScenario as createScenarioRaw} from './createScenario';
-import {createTables as createTablesRaw} from './createTables';
-import {getScenarios as getScenariosRaw} from './getScenarios';
-import {removeScenario as removeScenarioRaw} from './removeScenario';
+import {createScenario} from './createScenario';
+import {createTables} from './createTables';
+import {getScenarios} from './getScenarios';
+import {removeScenario} from './removeScenario';
 
 AppState.addEventListener('change', async state => {
   if (state === 'background' || state === 'inactive') {
@@ -12,9 +12,9 @@ AppState.addEventListener('change', async state => {
   }
 });
 
-export namespace DatabaseService {
-  export const createTables = createTablesRaw;
-  export const getScenarios = getScenariosRaw;
-  export const createScenario = createScenarioRaw;
-  export const removeScenario = removeScenarioRaw;
-}
+export const DatabaseService = Object.freeze({
+  createTables,
+  getScenarios,
+  createScenario,
+  removeScenario,
+});

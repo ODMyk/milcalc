@@ -11,22 +11,22 @@ import React from 'react';
 
 export type MenuTabsParamList = {
   ScenariosNavigator: undefined;
-  SavedNavigator: undefined;
+  IncomingNavigator: undefined;
 };
 
 export type ScenariosStackParamList = {
   Scenarios: undefined;
 };
 
-export type SavedStackParamList = {
-  Saved: undefined;
+export type IncomingStackParamList = {
+  Incoming: undefined;
 };
 
 const MenuTabsNaviagor = createBottomTabNavigator<MenuTabsParamList>();
 
 const ScenariosTabStack = createNativeStackNavigator<ScenariosStackParamList>();
 
-const SavedTabStack = createNativeStackNavigator<SavedStackParamList>();
+const IncomingTabStack = createNativeStackNavigator<IncomingStackParamList>();
 
 const ScenariosStack = () => {
   return (
@@ -36,11 +36,11 @@ const ScenariosStack = () => {
   );
 };
 
-const SavedStack = () => {
+const IncomingStack = () => {
   return (
-    <SavedTabStack.Navigator screenOptions={screenOptions}>
-      <SavedTabStack.Screen name="Saved" component={Saved} />
-    </SavedTabStack.Navigator>
+    <IncomingTabStack.Navigator screenOptions={screenOptions}>
+      <IncomingTabStack.Screen name="Incoming" component={Saved} />
+    </IncomingTabStack.Navigator>
   );
 };
 
@@ -55,9 +55,9 @@ export const MenuNavigator = () => {
         options={{tabBarLabel: 'Scenarios'}}
       />
       <MenuTabsNaviagor.Screen
-        name="SavedNavigator"
-        component={SavedStack}
-        options={{tabBarLabel: 'Saved'}}
+        name="IncomingNavigator"
+        component={IncomingStack}
+        options={{tabBarLabel: 'Incoming'}}
       />
     </MenuTabsNaviagor.Navigator>
   );

@@ -8,8 +8,8 @@ export function Saved() {
   const styles = useStyles();
 
   return (
-    <DefaultScreen>
-      <Typography.Header center>Saved</Typography.Header>
+    <DefaultScreen style={styles.container}>
+      <Typography.Header center>Incoming</Typography.Header>
     </DefaultScreen>
   );
 }
