@@ -1,7 +1,14 @@
 import {BlurView} from '@react-native-community/blur';
 import {themeSelector} from '@store/modules/AppCommon/selectors';
 import React from 'react';
-import {Keyboard, Modal, Pressable, ScrollView, ViewStyle} from 'react-native';
+import {
+  Keyboard,
+  Modal,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  ViewStyle,
+} from 'react-native';
 import {
   Gesture,
   GestureDetector,
@@ -48,7 +55,7 @@ export function ModalWithBlur({
   };
 
   return (
-    <GestureHandlerRootView>
+    <GestureHandlerRootView style={StyleSheet.absoluteFill}>
       <GestureDetector gesture={gesture}>
         <Modal
           style={styles.modal}

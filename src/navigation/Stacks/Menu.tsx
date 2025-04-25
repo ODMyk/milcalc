@@ -1,3 +1,4 @@
+import {LanguagePicker} from '@components/custom/LanguagePicker';
 import {TabBar} from '@components/layout/TabBar';
 import {screenOptions, tabOptions} from '@navigation/options';
 import {
@@ -9,6 +10,7 @@ import {Saved} from '@screens/MainFlow/Saved';
 import {Scenarios} from '@screens/MainFlow/Scenarios';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
+import {Modal} from 'react-native';
 
 export type MenuTabsParamList = {
   ScenariosNavigator: undefined;
@@ -48,20 +50,23 @@ const IncomingStack = () => {
 export const MenuNavigator = () => {
   const {t} = useTranslation();
   return (
-    <MenuTabsNaviagor.Navigator
-      screenOptions={tabOptions}
-      tabBar={CustomTabBar}>
-      <MenuTabsNaviagor.Screen
-        name="ScenariosNavigator"
-        component={ScenariosStack}
-        options={{tabBarLabel: t('navbar.scenarios')}}
-      />
-      <MenuTabsNaviagor.Screen
-        name="IncomingNavigator"
-        component={IncomingStack}
-        options={{tabBarLabel: t('navbar.saved')}}
-      />
-    </MenuTabsNaviagor.Navigator>
+    <>
+      <LanguagePicker />
+      <MenuTabsNaviagor.Navigator
+        screenOptions={tabOptions}
+        tabBar={CustomTabBar}>
+        <MenuTabsNaviagor.Screen
+          name="ScenariosNavigator"
+          component={ScenariosStack}
+          options={{tabBarLabel: t('navbar.scenarios')}}
+        />
+        <MenuTabsNaviagor.Screen
+          name="IncomingNavigator"
+          component={IncomingStack}
+          options={{tabBarLabel: t('navbar.saved')}}
+        />
+      </MenuTabsNaviagor.Navigator>
+    </>
   );
 };
 
