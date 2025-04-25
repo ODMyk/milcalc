@@ -8,6 +8,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Saved} from '@screens/MainFlow/Saved';
 import {Scenarios} from '@screens/MainFlow/Scenarios';
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 
 export type MenuTabsParamList = {
   ScenariosNavigator: undefined;
@@ -45,6 +46,7 @@ const IncomingStack = () => {
 };
 
 export const MenuNavigator = () => {
+  const {t} = useTranslation();
   return (
     <MenuTabsNaviagor.Navigator
       screenOptions={tabOptions}
@@ -52,12 +54,12 @@ export const MenuNavigator = () => {
       <MenuTabsNaviagor.Screen
         name="ScenariosNavigator"
         component={ScenariosStack}
-        options={{tabBarLabel: 'Scenarios'}}
+        options={{tabBarLabel: t('navbar.scenarios')}}
       />
       <MenuTabsNaviagor.Screen
         name="IncomingNavigator"
         component={IncomingStack}
-        options={{tabBarLabel: 'Incoming'}}
+        options={{tabBarLabel: t('navbar.saved')}}
       />
     </MenuTabsNaviagor.Navigator>
   );

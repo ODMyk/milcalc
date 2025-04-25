@@ -2,6 +2,7 @@ import {FormInputProps} from '@components/core/FormFields/types';
 import {Typography} from '@components/core/Typography';
 import React from 'react';
 import {Controller} from 'react-hook-form';
+import {useTranslation} from 'react-i18next';
 import {View} from 'react-native';
 import {ScenarioVariant} from 'src/types/Scenario';
 
@@ -17,6 +18,7 @@ export function ScenarioVariantSelect({
   control,
 }: ScenarioVariantSelectProps) {
   const styles = useStyles();
+  const {t} = useTranslation();
 
   return (
     <Controller
@@ -26,7 +28,7 @@ export function ScenarioVariantSelect({
         return (
           <View style={styles.container}>
             <Typography.Description customStyles={styles.title}>
-              Choose scenario variant
+              {t('createScenario.form.variant')}
             </Typography.Description>
             {allVariants.map(variant => (
               <VariantEntry

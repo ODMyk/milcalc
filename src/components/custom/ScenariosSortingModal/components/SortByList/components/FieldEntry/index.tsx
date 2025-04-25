@@ -3,6 +3,7 @@ import {Typography} from '@components/core/Typography';
 import {ScenariosScreenActions} from '@store/modules/ScenariosScreen/actions';
 import {ScenariosScreenState} from '@store/modules/ScenariosScreen/reducer';
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 import {TouchableOpacity} from 'react-native';
 import {useDispatch} from 'react-redux';
 
@@ -13,14 +14,11 @@ interface FieldEntryProps {
   isSelected: boolean;
 }
 
-const textByField: Record<ScenariosScreenState['sortBy'], string> = {
-  title: 'Title',
-  createdAt: 'Creation Date',
-};
-
 export function FieldEntry({field, isSelected}: FieldEntryProps) {
   const styles = useStyles(isSelected);
   const dispatch = useDispatch();
+
+  const {t} = useTranslation();
 
   const onPress = () => {
     dispatch(ScenariosScreenActions.SET_SORTBY.START.create(field));
@@ -30,7 +28,7 @@ export function FieldEntry({field, isSelected}: FieldEntryProps) {
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <CheckBox checked={isSelected} onCheck={onPress} size={16} />
       <Typography.Description customStyles={styles.variant}>
-        {textByField[field]}
+        {t(`scenarioSorting.sortBy.${field}`)}
       </Typography.Description>
     </TouchableOpacity>
   );

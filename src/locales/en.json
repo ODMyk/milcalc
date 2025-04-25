@@ -1,0 +1,50 @@
+{
+  "navbar": {
+    "scenarios": "Scenarios",
+    "saved": "Saved"
+  },
+  "languagePicker": {
+    "title": "Select Language",
+    "language": {
+      "en": "English",
+      "ua": "Ukrainian"
+    }
+  },
+  "createScenario": {
+    "title": "Create New Scenario",
+    "form": {
+      "apply": "Apply",
+      "cancel": "Cancel",
+      "title": "Scenario Name",
+      "description": "Scenario Description (optional)",
+      "variant": "Scenario Variant",
+      "variant.angles": "Angles",
+      "variant.calibration": "Calibration"
+    }
+  },
+  "scenarioSorting": {
+    "title": "Scenarios Sorting",
+    "sortBy": "Sort By",
+    "sortBy.title": "Title",
+    "sortBy.createdAt": "Creation Date",
+    "orderBy": "Order By",
+    "ascending": "Ascending",
+    "descending": "Descending",
+    "apply": "Apply",
+    "reset": "Reset"
+  },
+  "scenarioFilter": {
+    "title": "Filter Scenarios",
+    "description": "Select scenarios you want to see",
+    "apply": "Apply",
+    "reset": "Reset"
+  },
+  "noScenarios": {
+    "description": "No scenarios yet",
+    "link": "Create new",
+    "noFiltered": "No scenarios found with your criteria"
+  },
+  "searchBar": {
+    "placeholder": "Search..."
+  }
+}

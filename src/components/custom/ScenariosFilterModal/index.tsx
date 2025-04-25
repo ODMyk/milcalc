@@ -4,6 +4,7 @@ import {Typography} from '@components/core/Typography';
 import {ScenariosScreenActions} from '@store/modules/ScenariosScreen/actions';
 import {filtersOpenedSelector} from '@store/modules/ScenariosScreen/selectors';
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 import {View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -14,6 +15,8 @@ export function ScenariosFilterModal() {
   const styles = useStyles();
   const dispatch = useDispatch();
   const isVisible = useSelector(filtersOpenedSelector);
+
+  const {t} = useTranslation();
 
   const close = () => {
     dispatch(ScenariosScreenActions.SET_FILTERS_OPENED.START.create(false));
@@ -26,18 +29,22 @@ export function ScenariosFilterModal() {
   return (
     <ModalWithBlur onClose={close} isVisible={isVisible}>
       <Typography.Header customStyles={styles.title}>
-        Scenario Filters
+        {t('scenarioFilter.title')}
       </Typography.Header>
       <Typography.Description customStyles={styles.description}>
-        Toggle scenario variants you want to see
+        {t('scenarioFilter.description')}
       </Typography.Description>
       <VariantsList />
       <View style={styles.buttonsContainer}>
         <Button onPress={reset}>
-          <Typography.Description>Reset</Typography.Description>
+          <Typography.Description>
+            {t('scenarioFilter.reset')}
+          </Typography.Description>
         </Button>
         <Button onPress={close}>
-          <Typography.Description>Apply</Typography.Description>
+          <Typography.Description>
+            {t('scenarioFilter.apply')}
+          </Typography.Description>
         </Button>
       </View>
     </ModalWithBlur>

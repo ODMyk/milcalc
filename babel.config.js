@@ -30,6 +30,7 @@ module.exports = {
           '@store': './src/store',
           '@lottie': './src/assets/lottie',
           '@types': './src/types',
+          '@locales': './src/locales',
         },
       },
     ],

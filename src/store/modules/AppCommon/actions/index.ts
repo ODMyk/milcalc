@@ -17,9 +17,14 @@ const SET_IS_ERROR = createAction('SET_IS_ERROR', {
   START: (isError: boolean) => isError,
 });
 
+const SET_LANGUAGE_PICKER_OPENED = createAction('SET_LANGUAGE_PICKER_OPENED', {
+  START: (isOpened: boolean) => isOpened,
+});
+
 export const AppCommonActions = Object.freeze({
   SWITCH_THEME,
   CHANGE_THEME,
   INIT,
   SET_IS_ERROR,
+  SET_LANGUAGE_PICKER_OPENED,
 });

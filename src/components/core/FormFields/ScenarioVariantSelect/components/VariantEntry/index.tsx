@@ -1,6 +1,7 @@
 import {CheckBox} from '@components/core/CheckBox';
 import {Typography} from '@components/core/Typography';
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 import {TouchableOpacity} from 'react-native';
 import {ScenarioVariant} from 'src/types/Scenario';
 
@@ -24,6 +25,8 @@ export function VariantEntry({
 }: VariantEntryProps) {
   const styles = useStyles(isSelected);
 
+  const {t} = useTranslation();
+
   const handlePress = () => {
     onChange(variant);
   };
@@ -32,7 +35,7 @@ export function VariantEntry({
     <TouchableOpacity style={styles.item} onPress={handlePress}>
       <CheckBox checked={isSelected} onCheck={handlePress} size={12} />
       <Typography.Description customStyles={styles.text}>
-        {textByVariant[variant]}
+        {t(`createScenario.form.variant.${variant}`)}
       </Typography.Description>
     </TouchableOpacity>
   );

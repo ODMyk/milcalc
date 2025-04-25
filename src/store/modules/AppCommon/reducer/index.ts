@@ -6,11 +6,13 @@ interface AppCommonState {
   theme: 'dark' | 'light';
   isError: boolean;
   errorText?: string;
+  isLanguagePickerOpened: boolean;
 }
 
 const INITIAL_STATE: AppCommonState = {
   theme: 'light',
   isError: false,
+  isLanguagePickerOpened: false,
 };
 
 type Actions = ReturnType<
@@ -18,6 +20,7 @@ type Actions = ReturnType<
   | typeof AppCommonActions.SWITCH_THEME.START.create
   | typeof AppCommonActions.SET_IS_ERROR.START.create
   | typeof AppCommonActions.INIT.FAILED.create
+  | typeof AppCommonActions.SET_LANGUAGE_PICKER_OPENED.START.create
 >;
 
 export function appCommonReducer(
@@ -39,6 +42,9 @@ export function appCommonReducer(
       case AppCommonActions.INIT.FAILED.type:
         draft.isError = true;
         draft.errorText = action.payload.errorMessage;
+        break;
+      case AppCommonActions.SET_LANGUAGE_PICKER_OPENED.START.type:
+        draft.isLanguagePickerOpened = action.payload;
         break;
     }
   });

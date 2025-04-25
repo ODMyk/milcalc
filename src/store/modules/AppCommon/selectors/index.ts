@@ -14,3 +14,8 @@ export const errorTextSelector = createSelector(
   selectModule,
   state => state.errorText,
 );
+
+export const isLanguagePickerOpenedSelector = createSelector(
+  selectModule,
+  state => state.isLanguagePickerOpened,
+);

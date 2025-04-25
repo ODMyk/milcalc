@@ -3,10 +3,17 @@ import * as Yup from 'yup';
 
 import {FormInput} from './types';
 
-export const FORM_DEFAULT_VALUES: FormInput = {
-  title: 'Unnamed Scenario',
-  description: '',
-  variant: ScenarioVariant.ANGLES,
+export const FORM_DEFAULT_VALUES: Record<string, FormInput> = {
+  en: {
+    title: 'Unnamed Scenario',
+    description: '',
+    variant: ScenarioVariant.ANGLES,
+  },
+  ua: {
+    title: 'Сценарій без назви',
+    description: '',
+    variant: ScenarioVariant.ANGLES,
+  },
 };
 
 export const FORM_VALIDATION_SCHEMA = Yup.object({

@@ -1,10 +1,10 @@
-import {textByVariant} from '@components/core/FormFields/ScenarioVariantSelect/components/VariantEntry';
 import {SwipeableItem} from '@components/core/SwipableItem';
 import {Typography} from '@components/core/Typography';
 import {LIST_ENTRY_FORMAT} from '@constants/dateFormats';
 import {ScenariosScreenActions} from '@store/modules/ScenariosScreen/actions';
 import {DateTime} from 'luxon';
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 import {TouchableOpacity, View} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {ChevronRightIcon} from 'src/assets/icons/ChevronRight';
@@ -48,6 +48,8 @@ export function ScenarioListEntry({
   const styles = useStyles();
   // const dispatch = useDispatch();
 
+  const {t} = useTranslation();
+
   const formattedDate = DateTime.fromISO(scenario.createdAt).toFormat(
     LIST_ENTRY_FORMAT,
   );
@@ -79,7 +81,7 @@ export function ScenarioListEntry({
             {formattedDate}
           </Typography.Description>
           <Typography.Description customStyles={styles.variant}>
-            {textByVariant[scenario.variant]}
+            {t(`createScenario.form.variant.${scenario.variant}`)}
           </Typography.Description>
           <Typography.Description customStyles={styles.description}>
             {scenario.description}

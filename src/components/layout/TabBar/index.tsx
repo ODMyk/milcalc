@@ -3,6 +3,7 @@ import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
 import {AppCommonActions} from '@store/modules/AppCommon/actions';
 import {themeSelector} from '@store/modules/AppCommon/selectors';
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 import {TouchableOpacity, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useDispatch, useSelector} from 'react-redux';
@@ -16,9 +17,16 @@ export function TabBar({descriptors, state}: BottomTabBarProps) {
   const styles = useStyles();
   const dispatch = useDispatch();
   const theme = useSelector(themeSelector);
+  const {
+    i18n: {language},
+  } = useTranslation();
 
   const changeTheme = () => {
     dispatch(AppCommonActions.SWITCH_THEME.START.create());
+  };
+
+  const openLanguagePicker = () => {
+    dispatch(AppCommonActions.SET_LANGUAGE_PICKER_OPENED.START.create(true));
   };
 
   return (
@@ -36,6 +44,11 @@ export function TabBar({descriptors, state}: BottomTabBarProps) {
           ) : (
             <MoonIcon {...styles.buttonIcon} />
           )}
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={openLanguagePicker}>
+          <Typography.Description center>
+            {language.toLocaleUpperCase()}
+          </Typography.Description>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

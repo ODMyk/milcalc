@@ -4,6 +4,7 @@ import {Typography} from '@components/core/Typography';
 import {ScenariosScreenActions} from '@store/modules/ScenariosScreen/actions';
 import {sortingOpenedSelector} from '@store/modules/ScenariosScreen/selectors';
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 import {View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -16,6 +17,8 @@ export function SceanriosSortingModal() {
   const dispatch = useDispatch();
   const isVisible = useSelector(sortingOpenedSelector);
 
+  const {t} = useTranslation();
+
   const close = () => {
     dispatch(ScenariosScreenActions.SET_SORTING_OPENED.START.create(false));
   };
@@ -27,28 +30,32 @@ export function SceanriosSortingModal() {
   return (
     <ModalWithBlur onClose={close} isVisible={isVisible}>
       <Typography.Header customStyles={styles.title}>
-        Scenario Sorting
+        {t('scenarioSorting.title')}
       </Typography.Header>
       <View style={styles.container}>
         <View style={styles.subContainer}>
           <Typography.Description customStyles={styles.description}>
-            Sort by
+            {t('scenarioSorting.sortBy')}
           </Typography.Description>
           <SortByList />
         </View>
         <View style={styles.subContainer}>
           <Typography.Description customStyles={styles.description}>
-            Order
+            {t('scenarioSorting.orderBy')}
           </Typography.Description>
           <SortOrderSelect />
         </View>
       </View>
       <View style={styles.buttonsContainer}>
         <Button onPress={reset}>
-          <Typography.Description>Reset</Typography.Description>
+          <Typography.Description>
+            {t('scenarioSorting.reset')}
+          </Typography.Description>
         </Button>
         <Button onPress={close}>
-          <Typography.Description>Apply</Typography.Description>
+          <Typography.Description>
+            {t('scenarioSorting.apply')}
+          </Typography.Description>
         </Button>
       </View>
     </ModalWithBlur>

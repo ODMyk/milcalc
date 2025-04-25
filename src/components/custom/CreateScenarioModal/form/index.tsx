@@ -5,6 +5,7 @@ import {Typography} from '@components/core/Typography';
 import {ScenariosScreenActions} from '@store/modules/ScenariosScreen/actions';
 import React from 'react';
 import {useForm} from 'react-hook-form';
+import {useTranslation} from 'react-i18next';
 import {View} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {useYupValidationResolver} from 'src/hooks/forms/useYupValidationResolver';
@@ -16,6 +17,8 @@ import {FormInput, FormProps} from './types';
 export function Form({defaultValues, onSubmit}: FormProps) {
   const styles = useStyles();
   const dispatch = useDispatch();
+
+  const {t} = useTranslation();
 
   const resolver = useYupValidationResolver<FormInput>(FORM_VALIDATION_SCHEMA);
 
@@ -36,21 +39,25 @@ export function Form({defaultValues, onSubmit}: FormProps) {
         <FormTextEntry
           control={control}
           name="title"
-          placeholder="Scenario name"
+          placeholder={t('createScenario.form.title')}
         />
         <FormTextEntry
           control={control}
           name="description"
-          placeholder="Scenario description (optional)"
+          placeholder={t('createScenario.form.description')}
         />
         <ScenarioVariantSelect control={control} name="variant" />
       </View>
       <View style={styles.buttonsContainer}>
         <Button onPress={close}>
-          <Typography.Description>Cancel</Typography.Description>
+          <Typography.Description>
+            {t('createScenario.form.cancel')}
+          </Typography.Description>
         </Button>
         <Button onPress={submit}>
-          <Typography.Description>Apply</Typography.Description>
+          <Typography.Description>
+            {t('createScenario.form.apply')}
+          </Typography.Description>
         </Button>
       </View>
     </View>

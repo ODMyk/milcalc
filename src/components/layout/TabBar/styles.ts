@@ -27,6 +27,7 @@ export const useStyles = () => {
       paddingHorizontal: rem(24),
       paddingVertical: rem(12),
       backgroundColor: Colors.surface.sidebar,
+      gap: rem(8),
     },
     button: {
       alignItems: 'center',

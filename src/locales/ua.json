@@ -1,0 +1,50 @@
+{
+  "navbar": {
+    "scenarios": "Сценарії",
+    "saved": "Збережені"
+  },
+  "languagePicker": {
+    "title": "Оберіть мову",
+    "language": {
+      "en": "Англійська",
+      "ua": "Українська"
+    }
+  },
+  "createScenario": {
+    "title": "Створити новий сценарій",
+    "form": {
+      "apply": "Застосувати",
+      "cancel": "Скасувати",
+      "title": "Назва сценарію",
+      "description": "Опис сценарію (необов'язково)",
+      "variant": "Варіант сценарію",
+      "variant.angles": "Довороти",
+      "variant.calibration": "Пристрілка"
+    }
+  },
+  "scenarioSorting": {
+    "title": "Сортування сценаріів",
+    "sortBy": "Сортувати за",
+    "sortBy.title": "Назвою",
+    "sortBy.createdAt": "Датою створення",
+    "orderBy": "Порядок сортування",
+    "ascending": "За зростанням",
+    "descending": "За спаданням",
+    "apply": "Застосувати",
+    "reset": "Скинути"
+  },
+  "scenarioFilter": {
+    "title": "Фільтрування сценаріів",
+    "description": "Виберіть варіанти, які хочете бачити",
+    "apply": "Застосувати",
+    "reset": "Скинути"
+  },
+  "noScenarios": {
+    "description": "Сценарії поки відсутні",
+    "link": "Створити новий",
+    "noFiltered": "Не знайдено сценаріїв за вашими критеріями"
+  },
+  "searchBar": {
+    "placeholder": "Шукати..."
+  }
+}

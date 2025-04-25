@@ -1,6 +1,7 @@
 import {ScenariosScreenActions} from '@store/modules/ScenariosScreen/actions';
 import {searchStringSelector} from '@store/modules/ScenariosScreen/selectors';
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 import {TouchableOpacity, View} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
 import {useDispatch, useSelector} from 'react-redux';
@@ -12,6 +13,8 @@ import {useStyles} from './styles';
 export function SearchBar() {
   const styles = useStyles();
   const dispatch = useDispatch();
+
+  const {t} = useTranslation();
 
   const handleInput = (text: string) => {
     dispatch(ScenariosScreenActions.SET_SEARCH.START.create(text));
@@ -27,7 +30,7 @@ export function SearchBar() {
     <View style={styles.container}>
       <SearchIcon {...styles.icon} />
       <TextInput
-        placeholder="Search..."
+        placeholder={t('searchBar.placeholder')}
         style={styles.input}
         placeholderTextColor={styles.placeholder.color}
         autoCapitalize="none"

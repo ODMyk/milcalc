@@ -4,6 +4,7 @@ import {ScenariosScreenActions} from '@store/modules/ScenariosScreen/actions';
 import {createOpenedSelector} from '@store/modules/ScenariosScreen/selectors';
 import {useActionState} from '@store/modules/UtilityProcessStatuses/selectors';
 import React, {useCallback, useEffect} from 'react';
+import {useTranslation} from 'react-i18next';
 import {View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -16,6 +17,8 @@ export function CreateScenarioModal() {
   const styles = useStyles();
   const dispatch = useDispatch();
   const isVisible = useSelector(createOpenedSelector);
+
+  const {i18n, t} = useTranslation();
 
   const close = useCallback(() => {
     dispatch(ScenariosScreenActions.SET_CREATE_OPENED.START.create(false));
@@ -38,10 +41,13 @@ export function CreateScenarioModal() {
       <View style={styles.container}>
         <View style={styles.container}>
           <Typography.Header customStyles={styles.title}>
-            Create new Scenario
+            {t('createScenario.title')}
           </Typography.Header>
 
-          <Form onSubmit={apply} defaultValues={FORM_DEFAULT_VALUES} />
+          <Form
+            onSubmit={apply}
+            defaultValues={FORM_DEFAULT_VALUES[i18n.language]}
+          />
         </View>
       </View>
     </ModalWithBlur>

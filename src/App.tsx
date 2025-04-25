@@ -1,3 +1,5 @@
+import '@services/i18';
+
 import {Fallback} from '@components/core/Fallback';
 import {Router} from '@navigation/Router';
 import {configuredStore} from '@store/configureStore';

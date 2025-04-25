@@ -1,4 +1,5 @@
 import {CreateScenarioModal} from '@components/custom/CreateScenarioModal';
+import {LanguagePicker} from '@components/custom/LanguagePicker';
 import {ScenariosFilterModal} from '@components/custom/ScenariosFilterModal';
 import {SceanriosSortingModal} from '@components/custom/ScenariosSortingModal';
 import {DefaultScreen} from '@components/layout/DefaultScreen';
@@ -18,6 +19,7 @@ export function Scenarios() {
       <ScenariosFilterModal />
       <SceanriosSortingModal />
       <CreateScenarioModal />
+      <LanguagePicker />
     </DefaultScreen>
   );
 }
