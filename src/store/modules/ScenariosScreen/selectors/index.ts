@@ -23,8 +23,6 @@ export const sortBySelector = createSelector(
   state => state.sortBy,
 );
 
-export const listSelector = createSelector(selectModule, state => state.list);
-
 export const filtersOpenedSelector = createSelector(
   selectModule,
   state => state.filtersOpened,

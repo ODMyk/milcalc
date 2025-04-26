@@ -13,6 +13,7 @@ interface SwipeableItemProps extends React.PropsWithChildren {
   leftActions?: React.ReactNode;
   rightActions?: React.ReactNode;
   threshold?: number;
+  allowUnregisteredDirection?: boolean;
 }
 
 export function SwipeableItem({
@@ -20,20 +21,36 @@ export function SwipeableItem({
   leftActions,
   rightActions,
   threshold = 100,
+  allowUnregisteredDirection = false,
 }: SwipeableItemProps) {
   const styles = useStyles();
   const translateX = useSharedValue(0);
+  const startX = useSharedValue(0);
 
   const panGesture = Gesture.Pan()
     .shouldCancelWhenOutside(false)
     .activeOffsetX([-10, 10])
+    .onBegin(() => {
+      startX.value = translateX.value;
+    })
     .onUpdate(event => {
-      translateX.value = event.translationX;
+      const delta = event.translationX + startX.value;
+      if (
+        !allowUnregisteredDirection &&
+        translateX.value === 0 &&
+        ((event.translationX > 0 && !leftActions) ||
+          (event.translationX < 0 && !rightActions))
+      ) {
+        return;
+      }
+
+      translateX.value =
+        delta > 0 ? Math.min(delta, threshold) : Math.max(delta, -threshold);
     })
     .onEnd(event => {
-      if (event.translationX > threshold) {
+      if (event.translationX > threshold && leftActions) {
         translateX.value = withTiming(threshold);
-      } else if (event.translationX < -threshold) {
+      } else if (event.translationX < -threshold && rightActions) {
         translateX.value = withTiming(-threshold);
       } else {
         translateX.value = withTiming(0);

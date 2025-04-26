@@ -10,7 +10,6 @@ import {Saved} from '@screens/MainFlow/Saved';
 import {Scenarios} from '@screens/MainFlow/Scenarios';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
-import {Modal} from 'react-native';
 
 export type MenuTabsParamList = {
   ScenariosNavigator: undefined;

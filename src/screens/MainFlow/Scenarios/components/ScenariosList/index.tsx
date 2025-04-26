@@ -1,17 +1,15 @@
 import {ScenarioListEntry} from '@components/custom/ScenarioListEntry';
 import {FlashList, ListRenderItemInfo} from '@shopify/flash-list';
-import {ScenariosScreenActions} from '@store/modules/ScenariosScreen/actions';
 import {
   ascendingSelector,
   filterVariantsSelector,
-  listSelector,
   searchStringSelector,
   sortBySelector,
 } from '@store/modules/ScenariosScreen/selectors';
-import {useActionState} from '@store/modules/UtilityProcessStatuses/selectors';
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback} from 'react';
 import {ActivityIndicator, RefreshControl, View} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
+import {useScenariosList} from 'src/hooks/queries/scenarios/useScenariosList';
 import {Scenario} from 'src/types/Scenario';
 
 import {NoScenarios} from './components/NoScenarios';
@@ -23,45 +21,28 @@ const keyExtractor = (item: Scenario) => item.id;
 
 export function ScenariosList() {
   const styles = useStyles();
-  const dispatch = useDispatch();
-
-  const [gotResults, setGotResults] = useState(false);
 
   const searchString = useSelector(searchStringSelector);
   const variants = useSelector(filterVariantsSelector);
   const isAscending = useSelector(ascendingSelector);
   const sortBy = useSelector(sortBySelector);
-  const list = useSelector(listSelector);
 
-  const fetchingState = useActionState(ScenariosScreenActions.FETCH_SCENARIOS);
-
-  useEffect(() => {
-    if (fetchingState?.success) {
-      setGotResults(true);
-    }
-  }, [fetchingState?.success]);
+  const {
+    data: list,
+    isRefetching,
+    isFetching,
+    refetch,
+    isLoading,
+  } = useScenariosList();
 
   const onRefresh = useCallback(() => {
-    !fetchingState?.loading &&
-      dispatch(ScenariosScreenActions.FETCH_SCENARIOS.START.create());
-  }, [dispatch, fetchingState?.loading]);
-
-  useEffect(() => {
-    !fetchingState?.loading &&
-      !fetchingState?.success &&
-      !fetchingState?.failed &&
-      onRefresh();
-  }, [
-    fetchingState?.failed,
-    fetchingState?.loading,
-    fetchingState?.success,
-    onRefresh,
-  ]);
+    !isFetching && refetch();
+  }, [isFetching, refetch]);
 
   const data = React.useMemo(
     () =>
       list
-        .filter(
+        ?.filter(
           item =>
             item.title.includes(searchString) &&
             (!variants || variants.includes(item.variant)),
@@ -90,15 +71,16 @@ export function ScenariosList() {
       <ScenarioListEntry
         scenario={item}
         isFirst={index === 0}
-        isLast={index === data.length - 1}
+        isLast={index === (data?.length ?? 1) - 1}
       />
     ),
-    [data.length],
+    [data?.length],
   );
 
   return (
     <View style={styles.container}>
-      {gotResults ? (
+      {isLoading && <ActivityIndicator size="large" animating />}
+      {Array.isArray(data) && (
         <FlashList
           bounces={false}
           keyboardShouldPersistTaps="handled"
@@ -109,17 +91,12 @@ export function ScenariosList() {
           estimatedItemSize={60}
           data={data}
           ListEmptyComponent={
-            list.length === 0 ? NoScenarios : NoScenariosForSearch
+            list?.length === 0 ? NoScenarios : NoScenariosForSearch
           }
           refreshControl={
-            <RefreshControl
-              refreshing={!!fetchingState?.loading}
-              onRefresh={onRefresh}
-            />
+            <RefreshControl refreshing={isRefetching} onRefresh={onRefresh} />
           }
         />
-      ) : (
-        <ActivityIndicator size="large" animating />
       )}
     </View>
   );

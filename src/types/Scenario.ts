@@ -24,3 +24,39 @@ export type CreateScenarioDto = Omit<
 > & {
   description?: Scenario['description'];
 };
+
+export type Angle = `${number}-${number}`;
+
+export type MilsCoordinates = Angle;
+
+type Point = {
+  x: MilsCoordinates;
+  y: MilsCoordinates;
+};
+
+export type AngleInput = {
+  target: Point;
+  alpha: Angle;
+};
+
+export type CalibrationInputBase = {
+  target: Point;
+  isLeft: boolean;
+  isUnder: boolean;
+  diff: number;
+};
+
+export type CalibrationMilsInput = CalibrationInputBase & {
+  angle: Angle;
+};
+
+export type CalibrationMetersInput = CalibrationInputBase & {
+  distance: number;
+};
+
+export type ScenarioDetails = {
+  anglesPrimary: AngleInput[];
+  anglesSecondary: AngleInput[];
+  calibrationMeters: CalibrationMetersInput[];
+  calibrationMils: CalibrationMilsInput[];
+};

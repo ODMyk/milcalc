@@ -1,14 +1,13 @@
 import {SwipeableItem} from '@components/core/SwipableItem';
 import {Typography} from '@components/core/Typography';
 import {LIST_ENTRY_FORMAT} from '@constants/dateFormats';
-import {ScenariosScreenActions} from '@store/modules/ScenariosScreen/actions';
 import {DateTime} from 'luxon';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {TouchableOpacity, View} from 'react-native';
-import {useDispatch} from 'react-redux';
 import {ChevronRightIcon} from 'src/assets/icons/ChevronRight';
 import {TrashIcon} from 'src/assets/icons/TrashIcon';
+import {useRemoveScenario} from 'src/hooks/queries/scenarios/useRemoveScenario';
 import {Scenario} from 'src/types/Scenario';
 
 import {useStyles} from './styles';
@@ -24,11 +23,12 @@ interface ActionsProps {
 }
 
 function Actions({scenario}: ActionsProps) {
-  const dispatch = useDispatch();
   const styles = useStyles();
 
+  const {mutateAsync} = useRemoveScenario(scenario.id);
+
   const removeScenario = () => {
-    dispatch(ScenariosScreenActions.REMOVE_SCENARIO.START.create(scenario.id));
+    mutateAsync();
   };
 
   return (
