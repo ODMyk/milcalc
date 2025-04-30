@@ -21,6 +21,7 @@ export function* initSaga() {
 
     yield put(AppCommonActions.INIT.SUCCESS.create());
   } catch (error) {
+    console.error(error);
     yield put(
       AppCommonActions.INIT.FAILED.create({
         errorMessage: getErrorMessage(error),

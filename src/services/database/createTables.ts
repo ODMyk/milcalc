@@ -1,7 +1,7 @@
 import {getConnection} from './connection';
-import {createTablesQuery} from './queries/createTables';
+import {createTablesQueries} from './queries/createTables';
 
 export const createTables = async () => {
   const db = await getConnection();
-  await db.executeSql(createTablesQuery);
+  createTablesQueries.forEach(async query => await db.executeSql(query));
 };

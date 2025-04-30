@@ -1,5 +1,6 @@
 import {ModalWithBlur} from '@components/core/ModalWithBlur';
 import {Typography} from '@components/core/Typography';
+import {getZone} from '@services/geo';
 import {ScenariosScreenActions} from '@store/modules/ScenariosScreen/actions';
 import {createOpenedSelector} from '@store/modules/ScenariosScreen/selectors';
 import React, {useCallback} from 'react';
@@ -7,6 +8,7 @@ import {useTranslation} from 'react-i18next';
 import {View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {useCreateScenario} from 'src/hooks/queries/scenarios/useCreateScenario';
+import {useCurrentLocation} from 'src/hooks/useCurrentLocation';
 
 import {Form} from './form';
 import {FORM_DEFAULT_VALUES} from './form/constants';
@@ -17,6 +19,7 @@ export function CreateScenarioModal() {
   const styles = useStyles();
   const dispatch = useDispatch();
   const isVisible = useSelector(createOpenedSelector);
+  const {getLocation} = useCurrentLocation();
 
   const {i18n, t} = useTranslation();
   const {mutateAsync} = useCreateScenario();
@@ -26,7 +29,9 @@ export function CreateScenarioModal() {
   }, [dispatch]);
 
   const apply = async (data: FormInput) => {
-    await mutateAsync(data);
+    const currentLocation = await getLocation();
+    const zone = getZone(currentLocation.coords.longitude);
+    await mutateAsync({...data, zone});
     close();
   };
 

@@ -16,10 +16,7 @@
       "apply": "Apply",
       "cancel": "Cancel",
       "title": "Scenario Name",
-      "description": "Scenario Description (optional)",
-      "variant": "Scenario Variant",
-      "variant.angles": "Angles",
-      "variant.calibration": "Calibration"
+      "description": "Scenario Description (optional)"
     }
   },
   "scenarioSorting": {
@@ -49,5 +46,86 @@
   },
   "incoming": {
     "title": "Incoming"
+  },
+  "geolocationPermission": {
+    "title": "Geolocation Permission",
+    "description": "Allow access to your location for app to be able to work properly",
+    "apply": "Open settings"
+  },
+  "zoneChangeWarning": {
+    "description": "You've moved out of scenario zone.\nWould you like to replace it with the new one ?",
+    "apply": "Yes",
+    "cancel": "No"
+  },
+  "toolbar": {
+    "input": {
+      "tabLabel": "Input",
+      "angle": {
+        "title": "Angle",
+        "target": "Target",
+        "x": "X",
+        "y": "Y",
+        "angle": {
+          "primary": "Angle",
+          "secondary": "Angle"
+        }
+      },
+      "calibration": {
+        "title": "Calibration",
+        "mils": "Angle",
+        "meters": "Distance",
+        "x": "X",
+        "y": "Y",
+        "target": "Target",
+        "actual": "Actual",
+        "under": "Undershot",
+        "over": "Overshot",
+        "left": "Left",
+        "right": "Right"
+      }
+    },
+
+    "results": "Results"
+  },
+  "addInput": {
+    "title": "Add Input",
+    "apply": "Add",
+    "cancel": "Cancel",
+    "angle": {
+      "tabLabel": "Angle",
+      "target": "Target",
+      "x": "X",
+      "y": "Y",
+      "primary": {
+        "inputLabel": "Angle",
+        "tabLabel": "Primary"
+      },
+      "secondary": {
+        "inputLabel": "Angle",
+        "tabLabel": "Secondary"
+      }
+    },
+    "calibration": {
+      "tabLabel": "Calibration",
+      "formType": "Subtype",
+      "mils": {
+        "inputLabel": "Angle",
+        "tabLabel": "Angle"
+      },
+      "meters": {
+        "inputLabel": "Distance",
+        "tabLabel": "Distance"
+      },
+      "targetX": "X",
+      "targetY": "Y",
+      "actualX": "X",
+      "actualY": "Y",
+      "target": "Target",
+      "actual": "Actual",
+      "under": "Undershot",
+      "over": "Overshot",
+      "left": "Left",
+      "right": "Right"
+    }
   }
 }

@@ -1,25 +1,25 @@
 import {ScenariosScreenActions} from '@store/modules/ScenariosScreen/actions';
 import {produce} from 'immer';
-import {Scenario, ScenarioVariant} from 'src/types/Scenario';
+import {Scenario} from 'src/types/Scenario';
 
 export interface ScenariosScreenState {
   searchString: string;
-  variants: ScenarioVariant[];
   ascending: boolean;
   sortBy: keyof Pick<Scenario, 'title' | 'createdAt'>;
   filtersOpened: boolean;
   sortingOpened: boolean;
   createOpened: boolean;
+  geolocationPermissionModalOpened: boolean;
 }
 
 const INITIAL_STATE: ScenariosScreenState = {
   searchString: '',
-  variants: Object.values(ScenarioVariant),
   ascending: true,
   sortBy: 'title',
   filtersOpened: false,
   sortingOpened: false,
   createOpened: false,
+  geolocationPermissionModalOpened: false,
 };
 
 type Actions = ReturnType<
@@ -31,8 +31,7 @@ type Actions = ReturnType<
   | typeof ScenariosScreenActions.SET_FILTERS_OPENED.START.create
   | typeof ScenariosScreenActions.SET_SORTING_OPENED.START.create
   | typeof ScenariosScreenActions.SET_CREATE_OPENED.START.create
-  | typeof ScenariosScreenActions.TOGGLE_VARIANT_FILTER.START.create
-  | typeof ScenariosScreenActions.TOGGLE_VARIANT_FILTER.RESET.create
+  | typeof ScenariosScreenActions.SET_GEOLOCATION_PERMISSION_MODAL_OPENED.START.create
 >;
 
 export function scenariosScreenReducer(
@@ -65,13 +64,9 @@ export function scenariosScreenReducer(
       case ScenariosScreenActions.SET_CREATE_OPENED.START.type:
         draft.createOpened = action.payload;
         break;
-      case ScenariosScreenActions.TOGGLE_VARIANT_FILTER.START.type:
-        draft.variants = draft.variants.includes(action.payload)
-          ? draft.variants.filter(variant => variant !== action.payload)
-          : [...draft.variants, action.payload];
-        break;
-      case ScenariosScreenActions.TOGGLE_VARIANT_FILTER.RESET.type:
-        draft.variants = Object.values(ScenarioVariant);
+      case ScenariosScreenActions.SET_GEOLOCATION_PERMISSION_MODAL_OPENED.START
+        .type:
+        draft.geolocationPermissionModalOpened = action.payload;
         break;
     }
   });

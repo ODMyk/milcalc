@@ -4,19 +4,21 @@ import React from 'react';
 import {Controller} from 'react-hook-form';
 import {TextInputProps, View} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
+import {ViewProps} from 'react-native-svg/lib/typescript/fabric/utils';
 
 import {useStyles} from './styles';
 
 type FormTextFieldProps = Omit<TextInputProps, 'onChange' | 'value'> &
-  FormInputProps;
+  FormInputProps & {size?: 'modal' | 'default'} & ViewProps;
 
 export const FormTextEntry = ({
   control,
   name,
   placeholder,
+  size = 'modal',
   ...restProps
 }: FormTextFieldProps) => {
-  const styles = useStyles();
+  const styles = useStyles(size);
 
   return (
     <Controller

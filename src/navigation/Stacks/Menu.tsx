@@ -1,3 +1,4 @@
+import {GeolocationPermissionModal} from '@components/custom/GeolocationPermissionModal';
 import {LanguagePicker} from '@components/custom/LanguagePicker';
 import {TabBar} from '@components/layout/TabBar';
 import {screenOptions, tabOptions} from '@navigation/options';
@@ -51,6 +52,7 @@ export const MenuNavigator = () => {
   return (
     <>
       <LanguagePicker />
+      <GeolocationPermissionModal />
       <MenuTabsNaviagor.Navigator
         screenOptions={tabOptions}
         tabBar={CustomTabBar}>

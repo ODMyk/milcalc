@@ -4,16 +4,18 @@ import {CreateScenarioDto} from 'src/types/Scenario';
 import {getConnection} from './connection';
 import {createScenarioQuery} from './queries/createScenario';
 
-export const createScenario = async (dto: CreateScenarioDto) => {
+export const createScenario = async (
+  dto: CreateScenarioDto & {zone: number},
+) => {
   const uuid = uuidGenerator.v4();
-  const {title, description, variant} = dto;
+  const {title, description} = dto;
   const createdAt = new Date().toISOString();
 
   const entity = {
     id: uuid,
     title,
+    zone: dto.zone,
     description: description || '',
-    variant,
     createdAt,
     updatedAt: createdAt,
   };
@@ -23,8 +25,8 @@ export const createScenario = async (dto: CreateScenarioDto) => {
   await db.executeSql(createScenarioQuery, [
     entity.id,
     entity.title,
+    entity.zone,
     entity.description,
-    entity.variant,
     entity.createdAt,
     entity.updatedAt,
   ]);

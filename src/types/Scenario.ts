@@ -1,22 +1,10 @@
 export type Scenario = {
-  id: string;
-  variant: ScenarioVariant;
   title: string;
+  zone: number;
   description: string;
   createdAt: string;
   updatedAt: string;
-};
-
-export enum ScenarioVariant {
-  ANGLES = 'angles',
-  CALIBRATION = 'calibration',
-}
-
-export type ScenarioState = {
-  scenario: Scenario;
-  //   points: Point[];
-  //   lines: Line[];
-};
+} & WithId;
 
 export type CreateScenarioDto = Omit<
   Scenario,
@@ -25,29 +13,28 @@ export type CreateScenarioDto = Omit<
   description?: Scenario['description'];
 };
 
-export type Angle = `${number}-${number}`;
-
-export type MilsCoordinates = Angle;
-
-type Point = {
-  x: MilsCoordinates;
-  y: MilsCoordinates;
-};
+interface WithId {
+  id: string;
+}
 
 export type AngleInput = {
-  target: Point;
-  alpha: Angle;
-};
+  targetX: number;
+  targetY: number;
+  angle: number;
+} & WithId;
 
 export type CalibrationInputBase = {
-  target: Point;
+  targetX: number;
+  targetY: number;
+  actualX: number;
+  actualY: number;
   isLeft: boolean;
   isUnder: boolean;
   diff: number;
-};
+} & WithId;
 
 export type CalibrationMilsInput = CalibrationInputBase & {
-  angle: Angle;
+  angle: number;
 };
 
 export type CalibrationMetersInput = CalibrationInputBase & {
@@ -60,3 +47,5 @@ export type ScenarioDetails = {
   calibrationMeters: CalibrationMetersInput[];
   calibrationMils: CalibrationMilsInput[];
 };
+
+export type ScenarioWithDetails = Scenario & ScenarioDetails;

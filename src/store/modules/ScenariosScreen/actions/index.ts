@@ -1,6 +1,5 @@
 import {ScenariosScreenState} from '@store/modules/ScenariosScreen/reducer';
 import {createAction} from '@store/utils/actions/createAction';
-import {ScenarioVariant} from 'src/types/Scenario';
 
 const SET_SEARCH = createAction('SET_SEARCH', {
   START: (search: string) => search,
@@ -30,11 +29,16 @@ const SET_CREATE_OPENED = createAction('SET_CREATE_OPENED', {
   START: (opened: boolean) => opened,
 });
 
-const TOGGLE_VARIANT_FILTER = createAction('TOGGLE_VARIANT_FILTER', {
-  START: (variant: ScenarioVariant) => variant,
-});
+const SET_GEOLOCATION_PERMISSION_MODAL_OPENED = createAction(
+  'SET_GEOLOCATION_PERMISSION_MODAL_OPENED',
+  {
+    START: (opened: boolean) => opened,
+    SUCCESS: () => {},
+  },
+);
 
 export const ScenariosScreenActions = Object.freeze({
+  SET_GEOLOCATION_PERMISSION_MODAL_OPENED,
   SET_SEARCH,
   SET_SORT_ORDER,
   FLIP_SORT_ORDER,
@@ -42,5 +46,4 @@ export const ScenariosScreenActions = Object.freeze({
   SET_FILTERS_OPENED,
   SET_SORTING_OPENED,
   SET_CREATE_OPENED,
-  TOGGLE_VARIANT_FILTER,
 });

@@ -16,10 +16,7 @@
       "apply": "Застосувати",
       "cancel": "Скасувати",
       "title": "Назва сценарію",
-      "description": "Опис сценарію (необов'язково)",
-      "variant": "Варіант сценарію",
-      "variant.angles": "Довороти",
-      "variant.calibration": "Пристрілка"
+      "description": "Опис сценарію (необов'язково)"
     }
   },
   "scenarioSorting": {
@@ -49,5 +46,85 @@
   },
   "incoming": {
     "title": "Вхідні"
+  },
+  "geolocationPermission": {
+    "title": "Дозвіл на доступ до геолокації",
+    "description": "Застосунку необхідний дозвіл на отримання геолокації задля локалізації обчислень",
+    "apply": "Відкрити налаштування"
+  },
+  "zoneChangeWarning": {
+    "description": "Ви вийшли за межі зони сценарію.\nХочете замінити номер зони на поточний ?",
+    "apply": "Так",
+    "cancel": "Ні"
+  },
+  "toolbar": {
+    "input": {
+      "tabLabel": "Вхідні дані",
+      "angle": {
+        "title": "Наведення",
+        "target": "Ціль",
+        "x": "X",
+        "y": "Y",
+        "angle": {
+          "primary": "Доворот",
+          "secondary": "Кутомір"
+        }
+      },
+      "calibration": {
+        "title": "Пристрілка",
+        "mils": "Кут",
+        "meters": "Відстань",
+        "x": "X",
+        "y": "Y",
+        "target": "Ціль",
+        "actual": "Влучання",
+        "under": "Недоліт",
+        "over": "Переліт",
+        "left": "Лівіше",
+        "right": "Правіше"
+      }
+    },
+    "results": "Результати"
+  },
+  "addInput": {
+    "title": "Додати вхідні дані",
+    "apply": "Додати",
+    "cancel": "Закрити",
+    "angle": {
+      "tabLabel": "Наведення",
+      "target": "Ціль",
+      "x": "X",
+      "y": "Y",
+      "primary": {
+        "inputLabel": "Доворот",
+        "tabLabel": "Доворот"
+      },
+      "secondary": {
+        "inputLabel": "Кутомір",
+        "tabLabel": "Кутомір"
+      }
+    },
+    "calibration": {
+      "tabLabel": "Пристрілка",
+      "formType": "Підтип",
+      "mils": {
+        "inputLabel": "Кут",
+        "tabLabel": "Кут"
+      },
+      "meters": {
+        "inputLabel": "Відстань",
+        "tabLabel": "Відстань"
+      },
+      "target": "Ціль",
+      "targetX": "X",
+      "targetY": "Y",
+      "actual": "Влучання",
+      "actualX": "X",
+      "actualY": "Y",
+      "left": "Лівіше",
+      "right": "Правіше",
+      "under": "Недоліт",
+      "over": "Переліт"
+    }
   }
 }

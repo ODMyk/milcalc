@@ -8,7 +8,6 @@ import {useTranslation} from 'react-i18next';
 import {View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {VariantsList} from './components/VariantsList';
 import {useStyles} from './styles';
 
 export function ScenariosFilterModal() {
@@ -22,9 +21,7 @@ export function ScenariosFilterModal() {
     dispatch(ScenariosScreenActions.SET_FILTERS_OPENED.START.create(false));
   };
 
-  const reset = () => {
-    dispatch(ScenariosScreenActions.TOGGLE_VARIANT_FILTER.RESET.create());
-  };
+  const reset = () => {};
 
   return (
     <ModalWithBlur onClose={close} isVisible={isVisible}>
@@ -34,7 +31,6 @@ export function ScenariosFilterModal() {
       <Typography.Description customStyles={styles.description}>
         {t('scenarioFilter.description')}
       </Typography.Description>
-      <VariantsList />
       <View style={styles.buttonsContainer}>
         <Button onPress={reset}>
           <Typography.Description>

@@ -8,11 +8,6 @@ export const searchStringSelector = createSelector(
   state => state.searchString,
 );
 
-export const filterVariantsSelector = createSelector(
-  selectModule,
-  state => state.variants,
-);
-
 export const ascendingSelector = createSelector(
   selectModule,
   state => state.ascending,
@@ -36,4 +31,9 @@ export const sortingOpenedSelector = createSelector(
 export const createOpenedSelector = createSelector(
   selectModule,
   state => state.createOpened,
+);
+
+export const geolocationPermissionModalOpenedSelector = createSelector(
+  selectModule,
+  state => state.geolocationPermissionModalOpened,
 );

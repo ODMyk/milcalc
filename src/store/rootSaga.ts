@@ -1,3 +1,4 @@
+import {rootMain_screenSaga} from '@store/modules/MainScreen/sagas';
 import {rootScenariosScreenSaga} from '@store/modules/ScenariosScreen/sagas';
 import {all, AllEffect, call, ForkEffect, spawn} from 'redux-saga/effects';
 
@@ -7,7 +8,11 @@ type Saga =
   | (() => Generator<ForkEffect<void>, void, unknown>)
   | (() => Generator<AllEffect<ForkEffect<never>>, void, unknown>);
 
-const sagas: Saga[] = [rootScenariosScreenSaga, rootAppCommonSaga];
+const sagas: Saga[] = [
+  rootMain_screenSaga,
+  rootScenariosScreenSaga,
+  rootAppCommonSaga,
+];
 
 export function* rootSaga() {
   yield all([

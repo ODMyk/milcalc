@@ -1,4 +1,4 @@
 export const createScenarioQuery = `
-      INSERT INTO scenarios (id, title, description, variant, createdAt, updatedAt)
+      INSERT INTO scenarios (id, title, zone, description, createdAt, updatedAt)
       VALUES (?, ?, ?, ?, ?, ?);
     `;

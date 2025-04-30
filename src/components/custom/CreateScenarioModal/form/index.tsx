@@ -1,6 +1,5 @@
 import {Button} from '@components/core/Button';
 import {FormTextEntry} from '@components/core/FormFields/FormTextEntry';
-import {ScenarioVariantSelect} from '@components/core/FormFields/ScenarioVariantSelect';
 import {Typography} from '@components/core/Typography';
 import {ScenariosScreenActions} from '@store/modules/ScenariosScreen/actions';
 import React from 'react';
@@ -46,7 +45,6 @@ export function Form({defaultValues, onSubmit}: FormProps) {
           name="description"
           placeholder={t('createScenario.form.description')}
         />
-        <ScenarioVariantSelect control={control} name="variant" />
       </View>
       <View style={styles.buttonsContainer}>
         <Button onPress={close}>

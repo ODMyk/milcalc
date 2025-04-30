@@ -2,7 +2,6 @@ import {ScenarioListEntry} from '@components/custom/ScenarioListEntry';
 import {FlashList, ListRenderItemInfo} from '@shopify/flash-list';
 import {
   ascendingSelector,
-  filterVariantsSelector,
   searchStringSelector,
   sortBySelector,
 } from '@store/modules/ScenariosScreen/selectors';
@@ -23,7 +22,6 @@ export function ScenariosList() {
   const styles = useStyles();
 
   const searchString = useSelector(searchStringSelector);
-  const variants = useSelector(filterVariantsSelector);
   const isAscending = useSelector(ascendingSelector);
   const sortBy = useSelector(sortBySelector);
 
@@ -42,11 +40,7 @@ export function ScenariosList() {
   const data = React.useMemo(
     () =>
       list
-        ?.filter(
-          item =>
-            item.title.includes(searchString) &&
-            (!variants || variants.includes(item.variant)),
-        )
+        ?.filter(item => item.title.includes(searchString))
         .sort((a, b) => {
           switch (sortBy) {
             case 'createdAt':
@@ -63,7 +57,7 @@ export function ScenariosList() {
               return 0;
           }
         }),
-    [list, searchString, variants, sortBy, isAscending],
+    [list, searchString, sortBy, isAscending],
   );
 
   const renderItem = useCallback(

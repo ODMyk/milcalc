@@ -3,13 +3,14 @@ import {ActivityIndicator, TouchableOpacity, View} from 'react-native';
 
 import {useStyles} from './styles';
 
-interface ButtonProps extends React.PropsWithChildren {
-  onPress?: () => void;
+type ButtonProps = React.PropsWithChildren & {
   disabled?: boolean;
   loading?: boolean;
   fullWidth?: boolean;
   variant?: 'filled' | 'outline';
-}
+} & Partial<
+    Pick<React.ComponentProps<typeof TouchableOpacity>, 'onPress' | 'style'>
+  >;
 
 export function Button({
   children,
@@ -18,11 +19,14 @@ export function Button({
   loading = false,
   fullWidth = false,
   variant = 'outline',
+  style,
 }: ButtonProps) {
   const styles = useStyles(disabled, loading, variant, fullWidth);
 
   return (
-    <TouchableOpacity style={styles.container} onPress={onPress}>
+    <TouchableOpacity
+      style={[styles.container, ...(Array.isArray(style) ? style : [style])]}
+      onPress={onPress}>
       <View style={styles.children}>{children}</View>
       <ActivityIndicator
         size="small"
