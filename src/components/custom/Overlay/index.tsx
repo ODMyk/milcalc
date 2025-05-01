@@ -1,4 +1,3 @@
-import {AddScenarioInput} from '@components/custom/AddScenarioInput';
 import {Toolbar} from '@components/custom/Toolbar';
 import {ZoneChangeWarning} from '@components/custom/ZoneChangeWarning';
 import {currentScenarioIdSelector} from '@store/modules/MainScreen/selectors';
@@ -26,7 +25,6 @@ export function Overlay() {
       <View style={styles.main}>
         <Toolbar />
         <ZoneChangeWarning />
-        <AddScenarioInput />
       </View>
     </View>
   );

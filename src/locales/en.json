@@ -57,9 +57,13 @@
     "apply": "Yes",
     "cancel": "No"
   },
+  "topBar": {
+    "edit": "Edit"
+  },
   "toolbar": {
     "input": {
       "tabLabel": "Input",
+      "empty": "No inputs yet",
       "angle": {
         "title": "Angle",
         "target": "Target",
@@ -126,6 +130,22 @@
       "over": "Overshot",
       "left": "Left",
       "right": "Right"
+    }
+  },
+  "editInput": {
+    "title": "Edit Input",
+    "apply": "Apply",
+    "cancel": "Cancel",
+    "remove": "Remove"
+  },
+  "editScenario": {
+    "title": "Edit Scenario",
+    "apply": "Apply",
+    "cancel": "Cancel",
+    "remove": "Remove",
+    "form": {
+      "title": "Title",
+      "description": "Description"
     }
   }
 }

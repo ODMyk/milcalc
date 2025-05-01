@@ -1,7 +1,7 @@
 export type Scenario = {
   title: string;
   zone: number;
-  description: string;
+  description?: string;
   createdAt: string;
   updatedAt: string;
 } & WithId;
@@ -9,11 +9,9 @@ export type Scenario = {
 export type CreateScenarioDto = Omit<
   Scenario,
   'id' | 'createdAt' | 'updatedAt' | 'description'
-> & {
-  description?: Scenario['description'];
-};
+>;
 
-interface WithId {
+export interface WithId {
   id: string;
 }
 

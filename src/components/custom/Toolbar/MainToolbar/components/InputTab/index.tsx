@@ -1,6 +1,7 @@
 import {Button} from '@components/core/Button';
 import {FlashList, ListRenderItemInfo} from '@shopify/flash-list';
 import {MainScreenActions} from '@store/modules/MainScreen/actions';
+import {AdditionalToolbarState} from '@store/modules/MainScreen/reducer';
 import {currentScenarioIdSelector} from '@store/modules/MainScreen/selectors';
 import React, {useMemo} from 'react';
 import {View} from 'react-native';
@@ -16,10 +17,11 @@ import {
 import {AngleInputEntry} from './components/CalibrationMilsInputEntry/Angle';
 import {CalibrationMetersInputEntry} from './components/CalibrationMilsInputEntry/CalibrationMeters';
 import {CalibrationMilsInputEntry} from './components/CalibrationMilsInputEntry/CalibrationMils';
+import {EmptyInput} from './components/EmptyInput';
 import {Separator} from './components/Separator';
 import {useStyles} from './styles';
 
-type Input = (
+export type Input = (
   | (AngleInput & {isPrimary: boolean})
   | CalibrationMetersInput
   | CalibrationMilsInput
@@ -27,19 +29,19 @@ type Input = (
 
 const keyExtractor = (item: Input) => item.id;
 
-function isAngleInput(
+export function isAngleInput(
   input: Input,
 ): input is AngleInput & {isPrimary: boolean; number: number} {
   return 'targetX' in input && !('actualX' in input);
 }
 
-function isCalibrationMilsInput(
+export function isCalibrationMilsInput(
   input: Input,
 ): input is CalibrationMilsInput & {number: number} {
   return 'angle' in input && 'actualX' in input;
 }
 
-function isCalibrationMetersInput(
+export function isCalibrationMetersInput(
   input: Input,
 ): input is CalibrationMetersInput & {number: number} {
   return 'distance' in input && 'actualX' in input;
@@ -94,12 +96,17 @@ export function InputTab() {
           ],
     [data],
   );
+
   if (isLoading || !data) {
     return null;
   }
 
   const openAdd = () => {
-    dispatch(MainScreenActions.SET_ADD_INPUT_OPENED.START.create(true));
+    dispatch(
+      MainScreenActions.SET_ADDITIONAL_TOOLBAR_STATE.START.create(
+        AdditionalToolbarState.ADD_INPUT,
+      ),
+    );
   };
 
   return (
@@ -109,6 +116,7 @@ export function InputTab() {
         renderItem={renderItem}
         ItemSeparatorComponent={Separator}
         keyExtractor={keyExtractor}
+        ListEmptyComponent={EmptyInput}
       />
       <Button style={styles.button} onPress={openAdd}>
         <AddIcon {...styles.icon} />

@@ -25,7 +25,12 @@ export const prevZoneSelector = createSelector(
   state => state.prevZone,
 );
 
-export const addInputOpenedSelector = createSelector(
+export const additionalToolbarStateSelector = createSelector(
   selectModule,
-  state => state.addInputOpened,
+  state => state.additionalToolbarState,
+);
+
+export const editingInputSelector = createSelector(
+  selectModule,
+  state => state.editingInput,
 );

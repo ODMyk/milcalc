@@ -7,34 +7,39 @@ export const useStyles = () => {
 
   return StyleSheet.create({
     container: {
+      flexDirection: 'row',
       position: 'absolute',
       top: 0,
-      left: 0,
+
+      width: '50%',
       height: '100%',
-      width: '36%',
+
       backgroundColor: Colors.surface.toolbox,
-      borderWidth: 0,
-      borderRightWidth: rem(1),
       borderColor: Colors.border.default,
-      flexDirection: 'row',
+      borderWidth: 0,
+      borderLeftWidth: rem(1),
     },
-    tabs: {
+    main: {
       flex: 1,
-      borderWidth: 0,
-      borderRightWidth: rem(1),
+      borderLeftWidth: rem(1),
       borderColor: Colors.border.default,
     },
-    button: {
-      alignItems: 'center',
+    hideButton: {
       justifyContent: 'center',
+      alignItems: 'center',
       paddingHorizontal: rem(4),
+      backgroundColor: Colors.surface.sidebar,
     },
-    icon: {
-      color: Colors.controls.icon,
+    hideIcon: {
       width: rem(12),
+      color: Colors.controls.icon,
     },
-    rotated: {
-      transform: [{rotate: '180deg'}],
+    editTitle: {
+      fontSize: rem(10),
+      lineHeight: rem(14),
+      paddingVertical: rem(8),
+      borderColor: Colors.border.default,
+      borderBottomWidth: rem(1),
     },
   });
 };

@@ -24,5 +24,20 @@ export const useStyles = () => {
       width: rem(12),
       transform: [{rotate: '180deg'}],
     },
+    linkContainer: {
+      flex: 1,
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'flex-end',
+      paddingHorizontal: rem(8),
+    },
+    link: {
+      fontSize: rem(8),
+      lineHeight: rem(12),
+    },
+    description: {
+      fontSize: rem(12),
+      lineHeight: rem(16),
+    },
   });
 };

@@ -2,6 +2,7 @@ import {Button} from '@components/core/Button';
 import {FormTextEntry} from '@components/core/FormFields/FormTextEntry';
 import {Typography} from '@components/core/Typography';
 import {MainScreenActions} from '@store/modules/MainScreen/actions';
+import {AdditionalToolbarState} from '@store/modules/MainScreen/reducer';
 import {currentScenarioIdSelector} from '@store/modules/MainScreen/selectors';
 import React from 'react';
 import {Controller, useForm} from 'react-hook-form';
@@ -65,7 +66,11 @@ export function AddCalibrationInput() {
   };
 
   const close = () => {
-    dispatch(MainScreenActions.SET_ADD_INPUT_OPENED.START.create(false));
+    dispatch(
+      MainScreenActions.SET_ADDITIONAL_TOOLBAR_STATE.START.create(
+        AdditionalToolbarState.HIDDEN,
+      ),
+    );
   };
 
   const submit = handleSubmit(onSubmit);
@@ -274,14 +279,10 @@ export function AddCalibrationInput() {
         </View>
         <View style={styles.buttonsContainer}>
           <Button onPress={close}>
-            <Typography.Description customStyles={styles.actionButton}>
-              {t('addInput.cancel')}
-            </Typography.Description>
+            <Typography.Text>{t('addInput.cancel')}</Typography.Text>
           </Button>
           <Button onPress={submit}>
-            <Typography.Description customStyles={styles.actionButton}>
-              {t('addInput.apply')}
-            </Typography.Description>
+            <Typography.Text>{t('addInput.apply')}</Typography.Text>
           </Button>
         </View>
       </Pressable>

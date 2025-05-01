@@ -1,23 +1,19 @@
 import {Typography} from '@components/core/Typography';
+import {MainScreenActions} from '@store/modules/MainScreen/actions';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
-import {View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
+import {useDispatch} from 'react-redux';
+import {CalibrationMetersInput} from 'src/types/Scenario';
 
 import {useStyles} from './styles';
 
-interface AngleInputEntryProps {
-  targetX: number;
-  targetY: number;
-  actualX: number;
-  actualY: number;
-  distance: number;
+type AngleInputEntryProps = CalibrationMetersInput & {
   number: number;
-  isLeft: boolean;
-  isUnder: boolean;
-  diff: number;
-}
+};
 
 export function CalibrationMetersInputEntry({
+  id,
   targetX,
   targetY,
   actualX,
@@ -31,8 +27,27 @@ export function CalibrationMetersInputEntry({
   const styles = useStyles();
   const {t} = useTranslation();
 
+  const dispatch = useDispatch();
+
+  const openEdit = () => {
+    dispatch(
+      MainScreenActions.EDIT_INPUT.START.create({
+        id,
+        targetX,
+        targetY,
+        number,
+        distance,
+        actualX,
+        actualY,
+        isLeft,
+        isUnder,
+        diff,
+      }),
+    );
+  };
+
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={openEdit}>
       <Typography.Header customStyles={styles.label}>
         {`${t('toolbar.input.calibration.title')} (${t(
           'toolbar.input.calibration.meters',
@@ -91,6 +106,6 @@ export function CalibrationMetersInputEntry({
           </View>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }

@@ -15,5 +15,5 @@ export const FORM_DEFAULT_VALUES: Record<string, FormInput> = {
 
 export const FORM_VALIDATION_SCHEMA = Yup.object({
   title: Yup.string().required('Title is required'),
-  description: Yup.string().matches(/^[a-zA-Z0-9\s]*$/),
+  description: Yup.string(),
 });

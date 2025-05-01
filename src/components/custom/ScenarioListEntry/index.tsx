@@ -57,6 +57,7 @@ export function ScenarioListEntry({
   );
 
   const openScenario = () => {
+    dispatch(MainScreenActions.RESET_STATE.START.create());
     dispatch(
       MainScreenActions.SET_CURRENT_SCENARIO_ID.START.create(scenario.id),
     );

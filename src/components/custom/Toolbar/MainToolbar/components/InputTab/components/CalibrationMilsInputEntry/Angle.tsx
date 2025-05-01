@@ -1,17 +1,17 @@
 import {Typography} from '@components/core/Typography';
+import {MainScreenActions} from '@store/modules/MainScreen/actions';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
-import {View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
+import {useDispatch} from 'react-redux';
+import {AngleInput} from 'src/types/Scenario';
 
 import {useStyles} from './styles';
 
-interface AngleInputEntryProps {
-  targetX: number;
-  targetY: number;
-  angle: number;
+type AngleInputEntryProps = AngleInput & {
   isPrimary: boolean;
   number: number;
-}
+};
 
 export function AngleInputEntry({
   targetX,
@@ -19,12 +19,28 @@ export function AngleInputEntry({
   angle,
   isPrimary,
   number,
+  id,
 }: AngleInputEntryProps) {
   const styles = useStyles();
   const {t} = useTranslation();
 
+  const dispatch = useDispatch();
+
+  const openEdit = () => {
+    dispatch(
+      MainScreenActions.EDIT_INPUT.START.create({
+        id,
+        targetX,
+        targetY,
+        angle,
+        isPrimary,
+        number,
+      }),
+    );
+  };
+
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={openEdit}>
       <Typography.Header customStyles={styles.label}>
         {`${t('toolbar.input.angle.title')} #${number}`}
       </Typography.Header>
@@ -64,6 +80,6 @@ export function AngleInputEntry({
           </View>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
