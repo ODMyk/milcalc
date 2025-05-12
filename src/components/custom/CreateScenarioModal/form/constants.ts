@@ -2,7 +2,10 @@ import * as Yup from 'yup';
 
 import {FormInput} from './types';
 
-export const FORM_DEFAULT_VALUES: Record<string, FormInput> = {
+export const FORM_DEFAULT_VALUES: Record<
+  string,
+  FormInput & {description: string}
+> = {
   en: {
     title: 'Unnamed Scenario',
     description: '',

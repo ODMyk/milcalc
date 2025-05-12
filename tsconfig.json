@@ -81,5 +81,6 @@
     "metro.config.js",
     "jest.config.js",
     "calculations"
-  ]
+  ],
+  "include": ["**/*.ts", "**/*.tsx"]
 }

@@ -45,12 +45,9 @@ export function EditAngleInput({
   });
 
   useEffect(() => {
-    // @ts-ignore
-    setValue('targetX', targetX.toString());
-    // @ts-ignore
-    setValue('targetY', targetY.toString());
-    // @ts-ignore
-    setValue('angle', angle.toString());
+    setValue('targetX', targetX.toString() as unknown as FormInput['targetX']);
+    setValue('targetY', targetY.toString() as unknown as FormInput['targetY']);
+    setValue('angle', angle.toString() as unknown as FormInput['angle']);
   }, [targetX, targetY, angle, setValue]);
 
   const close = () => {

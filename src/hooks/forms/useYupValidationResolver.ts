@@ -3,9 +3,9 @@ import {useCallback} from 'react';
 import {ResolverError} from 'react-hook-form';
 import Yup from 'yup';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const useYupValidationResolver = <T extends object = any>(
-  validationSchema: Yup.Schema<T>,
+export const useYupValidationResolver = <T extends object>(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  validationSchema: Yup.Schema<any>,
   excludeFields: Array<string> = [],
 ) =>
   useCallback(

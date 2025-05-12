@@ -8,7 +8,7 @@ export type Scenario = {
 
 export type CreateScenarioDto = Omit<
   Scenario,
-  'id' | 'createdAt' | 'updatedAt' | 'description'
+  'id' | 'createdAt' | 'updatedAt'
 >;
 
 export interface WithId {

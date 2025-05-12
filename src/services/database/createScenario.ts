@@ -1,11 +1,11 @@
 import uuidGenerator from 'react-native-uuid';
-import {CreateScenarioDto} from 'src/types/Scenario';
+import {CreateScenarioDto, Scenario} from 'src/types/Scenario';
 
 import {getConnection} from './connection';
 import {createScenarioQuery} from './queries/createScenario';
 
 export const createScenario = async (
-  dto: CreateScenarioDto & {zone: number},
+  dto: CreateScenarioDto & Pick<Scenario, 'zone'>,
 ) => {
   const uuid = uuidGenerator.v4();
   const {title, description} = dto;

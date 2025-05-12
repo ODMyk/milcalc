@@ -25,7 +25,6 @@ export function AddCalibrationInput() {
 
   const {t} = useTranslation();
 
-  // @ts-ignore
   const resolver = useYupValidationResolver<FormInput>(FORM_VALIDATION_SCHEMA);
 
   const {control, handleSubmit, watch, reset} = useForm<FormInput>({

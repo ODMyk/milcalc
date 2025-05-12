@@ -1,7 +1,11 @@
 import {Button} from '@components/core/Button';
 import {FormTextEntry} from '@components/core/FormFields/FormTextEntry';
 import {Typography} from '@components/core/Typography';
-import {FormType} from '@components/custom/AddScenarioInput/components/AddCalibrationInput/types';
+import {
+  FormMeters,
+  FormMils,
+  FormType,
+} from '@components/custom/AddScenarioInput/components/AddCalibrationInput/types';
 import {MainScreenActions} from '@store/modules/MainScreen/actions';
 import {AdditionalToolbarState} from '@store/modules/MainScreen/reducer';
 import React, {useEffect} from 'react';
@@ -32,7 +36,6 @@ export function EditCalibrationInput(item: EditCalibrationInputProps) {
 
   const {t} = useTranslation();
 
-  // @ts-ignore
   const resolver = useYupValidationResolver<FormInput>(FORM_VALIDATION_SCHEMA);
 
   const {control, handleSubmit, watch, setValue} = useForm<FormInput>({
@@ -45,22 +48,30 @@ export function EditCalibrationInput(item: EditCalibrationInputProps) {
     setValue('isLeft', item.isLeft);
     setValue('isUnder', item.isUnder);
     setValue('formType', isMils(item) ? FormType.MILS : FormType.METERS);
-    // @ts-ignore
-    setValue('targetX', item.targetX.toString());
-    // @ts-ignore
-    setValue('targetY', item.targetY.toString());
-    // @ts-ignore
-    setValue('actualX', item.actualX.toString());
-    // @ts-ignore
-    setValue('actualY', item.actualY.toString());
-    // @ts-ignore
-    setValue('diff', item.diff.toString());
+    setValue(
+      'targetX',
+      item.targetX.toString() as unknown as FormInput['targetX'],
+    );
+    setValue(
+      'targetY',
+      item.targetY.toString() as unknown as FormInput['targetY'],
+    );
+    setValue(
+      'actualX',
+      item.actualX.toString() as unknown as FormInput['actualX'],
+    );
+    setValue(
+      'actualY',
+      item.actualY.toString() as unknown as FormInput['actualY'],
+    );
+    setValue('diff', item.diff.toString() as unknown as FormInput['diff']);
     if (isMils(item)) {
-      // @ts-ignore
-      setValue('angle', item.angle.toString());
+      setValue('angle', item.angle.toString() as unknown as FormMils['angle']);
     } else {
-      // @ts-ignore
-      setValue('distance', item.distance.toString());
+      setValue(
+        'distance',
+        item.distance.toString() as unknown as FormMeters['distance'],
+      );
     }
   }, [item, setValue]);
 
